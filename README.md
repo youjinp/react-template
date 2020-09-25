@@ -5,6 +5,8 @@ This is a template for React with Typescript, ESLint, Prettier and VSCode config
 # References
 
 - [https://medium.com/@feralamillo/create-react-app-typescript-eslint-and-prettier-699277b0b913](https://medium.com/@feralamillo/create-react-app-typescript-eslint-and-prettier-699277b0b913)
+- [https://medium.com/@smagluf/for-anyone-having-issues-regarding-the-eslint-version-its-due-to-the-fact-that-the-2d2ac1ebfb31](https://medium.com/@smagluf/for-anyone-having-issues-regarding-the-eslint-version-its-due-to-the-fact-that-the-2d2ac1ebfb31)
+- [https://medium.com/@brygrill/create-react-app-with-typescript-eslint-prettier-and-github-actions-f3ce6a571c97](https://medium.com/@brygrill/create-react-app-with-typescript-eslint-prettier-and-github-actions-f3ce6a571c97)
 
 # Steps to reproduce
 
@@ -12,12 +14,6 @@ This is a template for React with Typescript, ESLint, Prettier and VSCode config
 
    ```bash
    npx create-react-app <app> --typescript
-   ```
-
-1. install eslint
-
-   ```bash
-   npm i --save-dev eslint
    ```
 
 1. install plugins
