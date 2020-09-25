@@ -1,44 +1,173 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Template
 
-## Available Scripts
+This is a template for React with Typescript, ESLint, Prettier and VSCode configured
 
-In the project directory, you can run:
+# References
 
-### `yarn start`
+- [https://medium.com/@feralamillo/create-react-app-typescript-eslint-and-prettier-699277b0b913](https://medium.com/@feralamillo/create-react-app-typescript-eslint-and-prettier-699277b0b913)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Steps to reproduce
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. create app
 
-### `yarn test`
+   ```bash
+   npx create-react-app <app> --typescript
+   ```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. install eslint
 
-### `yarn build`
+   ```bash
+   npm i --save-dev eslint
+   ```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. install plugins
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+   ```bash
+   # https://www.npmjs.com/package/eslint-config-airbnb
+   # installs
+   # - eslint-config-airbnb
+   # - eslint-plugin-import
+   # - eslint-plugin-react
+   # - eslint-plugin-react-hooks
+   # - eslint-plugin-jsx-a11y
+   npx install-peerdeps --dev eslint-config-airbnb
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   npm i --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
+   ```
 
-### `yarn eject`
+1. install prettier
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   npm i --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. create `eslintrc.yaml`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   - code
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+     ```yaml
+     ---
+     env:
+       browser: true
+       es2020: true
+     extends:
+       - airbnb
+       - airbnb/hooks
+       - plugin:@typescript-eslint/recommended
+       - plugin:react/recommended
+       - plugin:import/errors
+       - plugin:import/warnings
+       - plugin:import/typescript
+       # always put prettier last
+       - prettier/@typescript-eslint # Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+       - plugin:prettier/recommended # Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
 
-## Learn More
+       # doesn't work instead of plugin:prettier/recommended
+       # - prettier
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+     globals:
+       Atomics: readonly
+       SharedArrayBuffer: readonly
+     parser: "@typescript-eslint/parser"
+     parserOptions:
+       ecmaFeatures:
+         jsx: true
+       ecmaVersion: 2020
+       sourceType: module
+     plugins:
+       - react
+       - "@typescript-eslint"
+       - prettier
+     rules:
+       # rule's settings
+       # --------------------------------
+       # "off" or 0 - turn the rule off
+       # "warn" or 1 - turn the rule on as a warning (doesn't affect exit code)
+       # "error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
+       #
+       # additional rule options
+       # --------------------------------
+       # quotes: ["error", "double"]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+       # use prettierrc.yaml
+       # doesn't work too well here?
+       # prettier/prettier:
+       # - 'error' # ?
+       # - tabWidth: 2
+       # - singleQuote: true
+
+       react/destructuring-assignment: [error, never]
+
+       react/jsx-filename-extension: "off"
+       import/extensions: "off"
+       import/prefer-default-export: "off"
+       react/jsx-one-expression-per-line: "off"
+
+       # Don't allow unused variables
+       no-unused-vars: "error"
+
+       # https://github.com/airbnb/javascript/pull/2136
+       # https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/632
+       jsx-a11y/label-has-associated-control:
+         - error
+         - labelComponents: []
+           labelAttributes: []
+           controlComponents: []
+           assert: either
+           depth: 25
+
+       # Allow untyped functions
+       # must be quoted
+       "@typescript-eslint/explicit-module-boundary-types": off
+
+       # Require naming react components
+       react/display-name: "error"
+
+       # NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
+       react/react-in-jsx-scope: "off"
+
+     settings:
+       import/resolver:
+         node:
+           extensions:
+             - ".js"
+             - ".jsx"
+             - ".ts"
+             - ".tsx"
+             - ".d.ts"
+     ```
+
+1. create `prettierrc.yaml`
+
+   ```yaml
+   semi: false
+   trailingComma: "all"
+   singleQuote: false
+   printWidth: 120
+   tabWidth: 4
+   ```
+
+1. install eslint and prettier extension for vscode
+1. vscode settings for auto fixes `.vscode/settings.json`
+
+   ```bash
+   {
+     "editor.codeActionsOnSave": {
+       "source.fixAll.eslint": true
+     },
+     "editor.formatOnSave": true
+   }
+   ```
+
+1. create `.eslintignore`
+
+   ```bash
+   # don't ever lint node_modules
+   node_modules
+   ```
+
+1. edit `package.json`
+
+   ```yaml
+   "scripts": { "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix" }
+   ```
