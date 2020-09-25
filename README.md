@@ -21,7 +21,7 @@ This is a template for React with Typescript, ESLint, Prettier and VSCode config
 
    ```bash
    npm i --save-dev eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks eslint-plugin-react
-   npm i --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-typescript@6.3.2
+   npm i --save-dev @typescript-eslint/eslint-plugin@4.0.1 @typescript-eslint/parser@4.0.1 eslint-config-airbnb-typescript@6.3.2
    ```
 
 1. install prettier
