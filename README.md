@@ -7,6 +7,7 @@ This is a template for React with Typescript, ESLint, Prettier and VSCode config
 - [https://medium.com/@feralamillo/create-react-app-typescript-eslint-and-prettier-699277b0b913](https://medium.com/@feralamillo/create-react-app-typescript-eslint-and-prettier-699277b0b913)
 - [https://medium.com/@smagluf/for-anyone-having-issues-regarding-the-eslint-version-its-due-to-the-fact-that-the-2d2ac1ebfb31](https://medium.com/@smagluf/for-anyone-having-issues-regarding-the-eslint-version-its-due-to-the-fact-that-the-2d2ac1ebfb31)
 - [https://medium.com/@brygrill/create-react-app-with-typescript-eslint-prettier-and-github-actions-f3ce6a571c97](https://medium.com/@brygrill/create-react-app-with-typescript-eslint-prettier-and-github-actions-f3ce6a571c97)
+- https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
 
 # Steps to reproduce
 
